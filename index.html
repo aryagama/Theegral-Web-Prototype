@@ -220,7 +220,8 @@
       background: none;
       opacity: 0; /* Awalnya tersembunyi */
       animation: fadeInUp 0.8s ease 2.4s forwards; /* Animasi fade in dengan delay */
-      transition: all 0.3s ease; /* PERUBAHAN: Tambahkan transisi */
+      transition: all 0.4s ease; /* PERUBAHAN: Perpanjang durasi transisi */
+      position: relative;
     }
 
     /* Animasi berurutan untuk setiap card */
@@ -243,35 +244,50 @@
       width: 100%;
       display: block;
       border-radius: 1px;
-      transition:transform 0.4s ease;
+      transition: all 0.4s ease; /* PERUBAHAN: Tambahkan transisi untuk semua properti */
     }
 
     .image-container .tag {
       position: absolute;
       top: 10px;
-      right: 10px;  /* <--- ganti ke kanan */
+      right: 10px;
       background: #F4E8A8;
       padding: 4px 10px;
       border-radius: 20px;
       border: #000;
       font-size: 12px;
       font-weight: lighter;
-      transition: all 0.3s ease; /* PERUBAHAN: Tambahkan transisi */
+      transition: all 0.4s ease; /* PERUBAHAN: Perpanjang durasi transisi */
     }
 
     .card p {
       font-size: 14px;
       margin: 10px 0 4px;
-      transition: all 0.3s ease; /* PERUBAHAN: Tambahkan transisi */
+      transition: all 0.4s ease; /* PERUBAHAN: Perpanjang durasi transisi */
     }
 
     .card .date {
       font-size: 12px;
       color: gray;
-      transition: all 0.3s ease; /* PERUBAHAN: Tambahkan transisi */
+      transition: all 0.4s ease; /* PERUBAHAN: Perpanjang durasi transisi */
+    }
+
+    /* PERUBAHAN: Efek blur pada card yang tidak dihover */
+    .card-list:hover .card:not(:hover) {
+      filter: blur(1px);
+      color: #333;
+      opacity: 0.7;
+      transform: scale(0.98);
     }
 
     /* PERUBAHAN: Efek saat hover pada card */
+    .card:hover {
+      filter: blur(0);
+      opacity: 1;
+      transform: scale(1.02);
+      z-index: 10;
+    }
+
     .card:hover .image-container img {
       transform: scale(1.05); /* Sedikit zoom pada gambar */
     }
@@ -286,7 +302,7 @@
     .card-list:hover .card:not(:hover) .image-container .tag,
     .card-list:hover .card:not(:hover) p,
     .card-list:hover .card:not(:hover) .date {
-      opacity: 0.3; /* Menjadi transparan */
+      opacity: 0.2; /* Lebih transparan */
     }
 
     /* Footer */
@@ -712,8 +728,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-content">
-      <p>Instagram:
-        <a href="https://instagram.com/theegral" target="_blank">@theegral</a></p>
+      <p>Instagram: <a href="https://instagram.com/theegral" target="_blank">@theegral</a></p>
       <p>Email: <a href="mailto:theegral@gmail.com">theegral@gmail.com</a></p>
       <p>Currently: <span id="clock"></span></p>
     </div>
