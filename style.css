@@ -9,7 +9,16 @@ body {
   background: #fff;
   color: #000;
   overflow-x: hidden;
-  padding-top: 100px; /* biar konten tidak ketimpa header */
+  padding-top: 100px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* Animasi fade in untuk seluruh halaman */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Header */
@@ -23,8 +32,21 @@ header {
   justify-content: center;
   align-items: center;
   background: #fff;
-  border-bottom: 1px solid #ddd;
   z-index: 1000;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeInDown 1s ease 0.5s forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header nav {
@@ -34,52 +56,147 @@ header nav {
 
 header nav a {
   margin-left: 15px;
-  padding: 6px 12px;
-  border-radius: 12px;
-  background: #f5f1d8;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #F4E8A8;
   text-decoration: none;
   color: black;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d4cfa5;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 1s forwards;
+  font-family: Arial, sans-serif;
+}
+
+header nav a:hover {
+  background: #DDCDFB;
+  border-color: #000000;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
   font-size: 14px;
 }
 
 header .logo img {
-  height: 40px;
+  height: 80px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.8s forwards;
 }
 
-/* Hero */
+/* Hero Section dengan efek scroll khusus */
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  position: relative;
+  height: 200vh; /* Tinggi double viewport untuk scroll effect */
 }
 
-#randomText {
-  font-size: 48px;
-  letter-spacing: 12px;
-  line-height: 1.5;
+/* Sticky Container untuk teks dan poster */
+.sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 20vh;
+  align-items: center;
   text-align: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Scroll Spacer untuk memberikan ruang scroll */
+.scroll-spacer {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 #finalText {
   font-size: 48px;
   max-width: 900px;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.3;
+  white-space: pre-line;
   opacity: 0;
-  transition: opacity 1s ease;
+  position: relative;
+  min-height: 200px;
+  animation: fadeInUp 1.2s ease 1.2s forwards;
+  z-index: 2;
 }
 
-/* Cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efek cursor berkedip */
+.cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: #000;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Floating posters dengan efek parallax */
+.poster-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.poster {
+  position: absolute;
+  width: 200px;
+  opacity: 0.25;
+  transition: transform 0.2s ease-out;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.7s forwards;
+}
+
+/* Efek parallax saat scroll */
+.sticky-container.scrolled .poster {
+  transform: translateY(-50px) scale(0.9);
+  opacity: 0.1;
+}
+
+.sticky-container.scrolled #finalText {
+  transform: translateY(-100px);
+  opacity: 0.7;
+}
+
+/* Cards Section dengan efek menimpa */
 .cards {
   background: #f7f7f7;
   padding: 40px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1.8s forwards;
+  position: relative;
+  z-index: 10;
+  margin-top: -100vh; /* Membuat cards menimpa hero section */
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 -20px 50px rgba(0,0,0,0.1);
 }
 
 .filter {
   margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 2s forwards;
 }
 
 .filter button {
@@ -89,59 +206,687 @@ header .logo img {
   border-radius: 12px;
   background: #e3dff8;
   cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 2.2s forwards;
 }
 
 .card-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 30px;
 }
 
 .card {
-  background: #fff;
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: none;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 2.4s forwards;
+  transition: all 0.4s ease;
+  position: relative;
 }
 
-.card img {
+.card:nth-child(1) {
+  animation-delay: 2.4s;
+}
+.card:nth-child(2) {
+  animation-delay: 2.6s;
+}
+.card:nth-child(3) {
+  animation-delay: 2.8s;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
   width: 100%;
-  border-radius: 8px;
+  display: block;
+  border-radius: 1px;
+  transition: all 0.4s ease;
 }
 
-.card .tag {
-  display: inline-block;
-  background: #f5f1d8;
-  padding: 2px 8px;
-  border-radius: 8px;
+.image-container .tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #F4E8A8;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: #000;
   font-size: 12px;
-  margin-bottom: 8px;
+  font-weight: lighter;
+  transition: all 0.4s ease;
 }
 
 .card p {
   font-size: 14px;
-  margin: 10px 0;
+  margin: 10px 0 4px;
+  transition: all 0.4s ease;
 }
 
 .card .date {
   font-size: 12px;
   color: gray;
+  transition: all 0.4s ease;
+  text-align: right;
+  display: block;
 }
 
-/* Footer */
+.card-list:hover .card:not(:hover) {
+  filter: opacity(20%);
+  color: #333;
+  opacity: 100;
+  transform: scale(0.98);
+}
+
+.card:hover {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.card:hover .image-container img {
+  transform: scale(1.05);
+}
+
+.card:hover .image-container .tag,
+.card:hover p,
+.card:hover .date {
+  opacity: 1;
+}
+
+.card-list:hover .card:not(:hover) .image-container .tag,
+.card-list:hover .card:not(:hover) p,
+.card-list:hover .card:not(:hover) .date {
+  opacity: 0.2;
+}
+
 footer {
-  padding: 30px;
+  padding: 40px 40px 20px;
   background: #f7f7f7;
-  border-top: 1px solid #ddd;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.footer-left {
+  max-width: 600px;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-right p {
+  margin: 0 0 8px;
   font-size: 14px;
 }
 
-.footer-content a {
-  color: black;
+.footer-link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #000;
   text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.footer-ack {
+  font-size: 20px;   /* lebih besar dari default 14px */
+  font-weight: 500;  /* agak tebal biar stand out */
+  margin-bottom: 15px;
+  line-height: 1.7;
+  color: #222;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+  }
+}
+
+
+/* Visibility Button */
+#visibilityBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2000;
+  padding: 5px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 1.5s forwards;
+}
+
+#visibilityBtn img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Accessibility Panel */
+#accessibilityPanel {
+  position: fixed;
+  bottom: 110px;
+  left: 20px;
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1999;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#accessibilityPanel.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#accessibilityPanel h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.accessibility-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.accessibility-option:last-child {
+  border-bottom: none;
+}
+
+.accessibility-option label {
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.close-panel {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.close-panel:hover {
+  background: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #finalText {
+    font-size: 32px;
+    padding: 0 20px;
+  }
+  
+  .hero {
+    height: 150vh;
+  }
+  
+  .cards {
+    margin-top: -50vh;
+    padding: 20px;
+  }
+}
+
+/* Accessibility Styles tetap sama */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header {
+  background: #1e1e1e;
+}
+
+body.dark-mode .cards {
+  background: #1e1e1e;
+}
+
+body.dark-mode footer {
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+}
+
+body.dark-mode .filter button {
+  background: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode header nav a {
+  background: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode #accessibilityPanel {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #333;
+}
+
+body.dark-mode #accessibilityPanel select {
+  background: #333;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+/* Accessibility Panel */
+#accessibilityPanel {
+  position: fixed;
+  bottom: 110px;
+  left: 20px;
+  width: 320px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1999;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  opacity: 0; /* Awalnya tersembunyi */
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transisi saat muncul */
+}
+
+#accessibilityPanel.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#accessibilityPanel h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.accessibility-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.accessibility-option:last-child {
+  border-bottom: none;
+}
+
+.accessibility-option label {
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-container input {
+  flex: 1;
+}
+
+.slider-value {
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Accessibility Styles */
+/* Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode header {
+  background: #1e1e1e;
+}
+
+body.dark-mode .cards {
+  background: #1e1e1e;
+}
+
+body.dark-mode footer {
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+}
+
+body.dark-mode .filter button {
+  background: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode header nav a {
+  background: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode #accessibilityPanel {
+  background: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #333;
+}
+
+body.dark-mode #accessibilityPanel select {
+  background: #333;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+/* High Contrast */
+body.high-contrast {
+  background: #000;
+  color: #fff;
+}
+
+body.high-contrast header {
+  background: #000;
+}
+
+body.high-contrast .cards {
+  background: #000;
+}
+
+body.high-contrast footer {
+  background: #000;
+  border-top: 2px solid #fff;
+}
+
+body.high-contrast .filter button {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+body.high-contrast header nav a {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+body.high-contrast .image-container .tag {
+  background: #fff;
+  color: #000;
+}
+
+/* Dyslexia Font */
+body.dyslexia-mode {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+/* Reduced Motion */
+body.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Color Blind Modes */
+body.protanopia {
+  filter: url(#protanopia);
+}
+
+body.deuteranopia {
+  filter: url(#deuteranopia);
+}
+
+body.tritanopia {
+  filter: url(#tritanopia);
+}
+
+/* Magnification */
+body.magnified {
+  zoom: 1.5;
+}
+
+/* Keyboard Navigation Focus */
+body.keyboard-navigation a:focus,
+body.keyboard-navigation button:focus,
+body.keyboard-navigation input:focus,
+body.keyboard-navigation select:focus {
+  outline: 3px solid #2196F3;
+  outline-offset: 2px;
+}
+
+/* Text to Speech Controls */
+#ttsControls {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 2001;
+}
+
+#ttsControls button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+/* Language Styles */
+body.indonesian .english-text {
+  display: none;
+}
+
+body.english .indonesian-text {
+  display: none;
+}
+
+/* Close Button */
+.close-panel {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.close-panel:hover {
+  background: #f0f0f0;
 }
