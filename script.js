@@ -1,6 +1,6 @@
 // PERUBAHAN: Efek ketik yang lebih smooth dengan cursor
 const finalTextEl = document.getElementById("finalText");
-const textContent = "❝\nWE SEE EVERY CORNER\nIN BETWEEN HAS A\nMAIN CORE.";
+const textContent = "❝\nWe see every corner in between\nhas a main core.";
 let i = 0;
 let lineCount = 0;
 
@@ -43,17 +43,20 @@ document.addEventListener("mousemove", (e) => {
   });
 });
 
-// Clock WIB (GMT+7)
+// PERBAIKAN: Clock WIB (GMT+7) - Fungsi yang benar
 function updateClock() {
-  const clockEl = document.getElementById("clock");
+  const clockEl = document.getElementById("currentTime");
   const now = new Date();
-  const options = {
-    timeZone: "Asia/Jakarta",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  };
-  clockEl.textContent = now.toLocaleTimeString("id-ID", options) + " WIB";
+  
+  // Konversi ke WIB (GMT+7)
+  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const wibTime = new Date(utc + (3600000 * 7));
+  
+  // Format waktu menjadi HH:MM
+  const hours = wibTime.getHours().toString().padStart(2, '0');
+  const minutes = wibTime.getMinutes().toString().padStart(2, '0');
+  
+  clockEl.textContent = `${hours}:${minutes} WIB`;
 }
 
 // Accessibility Panel Toggle
@@ -226,14 +229,6 @@ languageSelect.addEventListener("change", function() {
   document.body.classList.add(languageSelect.value);
 });
 
-window.addEventListener("load", function() {
-  typeWriter();
-  updateClock();
-  setInterval(updateClock, 1000);
-});
-
-// ... (kode JavaScript yang sudah ada) ...
-
 // Scroll Effect untuk Sticky Container
 const stickyContainer = document.querySelector('.sticky-container');
 const heroSection = document.querySelector('.hero');
@@ -261,12 +256,10 @@ function handleScroll() {
   });
 }
 
-// ... (kode JavaScript yang sudah ada) ...
-
 window.addEventListener("load", function() {
   typeWriter();
-  updateClock();
-  setInterval(updateClock, 1000);
+  updateClock(); // Panggil fungsi updateClock
+  setInterval(updateClock, 1000); // Update jam setiap detik
   
   // Tambahkan event listener untuk scroll
   window.addEventListener('scroll', handleScroll);
