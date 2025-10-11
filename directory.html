@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theegral Directory</title>
+  <link rel="stylesheet" href="directory.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+   <!-- Header -->
+  <header>
+    <div class="logo">
+       <img src="Logo Theegral.svg" alt="Theegral Logo">
+    </div>
+    <nav>
+      <a href="works.html">Works</a>
+      <a href="directory.html">Directory</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <!-- DIRECTORY SECTION -->
+  <section class="directory">
+    <h2>Directory</h2>
+
+    <!-- Filter Tags -->
+    <div class="filters">
+      <button class="active">All</button>
+      <button>Works</button>
+      <button>Artworks</button>
+      <button>Exhibition</button>
+      <button>Research</button>
+      <button>Product</button>
+      <button>Interaction</button>
+      <button>Discussion</button>
+    </div>
+
+    <!-- Directory List -->
+    <div class="directory-list">
+      <div class="item">
+        <div class="title">An Ode<br>to Life</div>
+        <div class="creator">Shidqi Nur Qolbi</div>
+        <div class="type">Artworks</div>
+        <div class="year">2025</div>
+      </div>
+
+      <div class="item">
+        <div class="title">Tondi</div>
+        <div class="creator">Debora Violin</div>
+        <div class="type">Artworks</div>
+        <div class="year">2024</div>
+      </div>
+
+      <div class="item">
+        <div class="title">Sebatang<br>Mangrove</div>
+        <div class="creator">Yunan Aryagama</div>
+        <div class="type">Research</div>
+        <div class="year">2024</div>
+      </div>
+
+      <div class="item">
+        <div class="title">Lorem Ipsum<br>Dolor Sit</div>
+        <div class="creator">Debora Violin,<br> Shidqi Nur Qolbi & <br>Yunan Aryagama</div>
+        <div class="type">Artworks</div>
+        <div class="year">2024</div>
+      </div>
+
+      <div class="item">
+        <div class="title">Ipsum<br>Disnativism</div>
+        <div class="creator">Debora Violin</div>
+        <div class="type">Research</div>
+        <div class="year">2023</div>
+      </div>
+
+      <div class="item">
+        <div class="title">Adiscipting</div>
+        <div class="creator">Yunan Aryagama</div>
+        <div class="type">Research</div>
+        <div class="year">2023</div>
+      </div>
+    </div>
+
+    <!-- OTHER -->
+    <h3 class="other">Other</h3>
+  </section>
+
+    <footer>
+    <div class="footer-main">
+      <div class="footer-left">
+        <p>
+          We acknowledge the Traditional Custodians of the land on which we live and work, 
+          and pay our respects to Elders past, present and emerging. 
+          We recognise their continuing connection to land, waters and culture.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-left-bottom">
+      </div>
+      <div class="footer-right-bottom">
+        <a href="#" class="footer-link">Terms and Conditions</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="https://instagram.com/theegral" target="_blank">IG: theegral</a>
+        <a href="mailto:theegral@gmail.com">E: theegral@gmail.com</a>
+        <div class="clock" id="indonesiaClock">00:00:00</div>
+      </div>
+    </div>
+  </footer>
+
+   <!-- Back to Top Button -->
+  <button id="backToTop" class="backtotop">↑</button>
+
+  <!-- Visibility button dengan rover.gif -->
+  <button id="visibilityBtn" class="visibility-btn" aria-label="Accessibility Settings">
+    <img src="rover.gif" alt="Accessibility Settings">
+  </button>
+
+  <!-- Accessibility Panel -->
+  <div id="accessibilityPanel" class="accessibility-panel">
+    <div class="panel-header">
+      <h3>Accessibility Settings</h3>
+      <button class="close-panel" aria-label="Close accessibility panel">&times;</button>
+    </div>
+    
+    <div class="panel-content">
+      <div class="accessibility-option">
+        <label for="lightDark">Light/Dark Mode</label>
+        <select id="lightDark">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="highContrast">High Contrast</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="highContrast">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="dyslexia">Dyslexia-Friendly Font</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="dyslexia">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="textToSpeech">Text-to-Speech</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="textToSpeech">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="magnification">Magnification</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="magnification">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="keyboardNav">Keyboard Navigation</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="keyboardNav">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="reducedMotion">Reduced Motion</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="reducedMotion">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="colorBlind">Color Blind Mode</label>
+        <select id="colorBlind">
+          <option value="none">None</option>
+          <option value="protanopia">Protanopia</option>
+          <option value="deuteranopia">Deuteranopia</option>
+          <option value="tritanopia">Tritanopia</option>
+        </select>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="english">English</option>
+          <option value="indonesian">Bahasa Indonesia</option>
+        </select>
+      </div>
+      
+      <div class="accessibility-option">
+        <button id="resetSettings" class="reset-btn">Reset All Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text-to-Speech Controls -->
+  <div id="ttsControls" class="tts-controls">
+    <div class="tts-header">
+      <h4>Text-to-Speech</h4>
+      <button class="close-tts" aria-label="Close TTS controls">&times;</button>
+    </div>
+    <div class="tts-controls-row">
+      <label for="voiceSelect">Voice:</label>
+      <select id="voiceSelect"></select>
+    </div>
+    <div class="tts-controls-row">
+      <label for="rateControl">Speed:</label>
+      <input type="range" id="rateControl" min="0.5" max="2" step="0.1" value="1">
+      <span id="rateValue">1</span>
+    </div>
+    <div class="tts-controls-row">
+      <button id="playTTS" class="tts-btn">Play</button>
+      <button id="pauseTTS" class="tts-btn">Pause</button>
+      <button id="stopTTS" class="tts-btn">Stop</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="directory.js"></script>
+</body>
+</html>
