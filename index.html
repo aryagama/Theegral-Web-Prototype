@@ -10,12 +10,25 @@
 </head>
 <body>
   <!-- Text to Speech Controls -->
-  <div id="ttsControls">
-    <button id="playTTS">Play</button>
-    <button id="pauseTTS">Pause</button>
-    <button id="stopTTS">Stop</button>
-    <select id="voiceSelect"></select>
-    <input type="range" id="rateControl" min="0.5" max="2" step="0.1" value="1">
+  <div id="ttsControls" class="tts-controls">
+    <div class="tts-header">
+      <h4>Text-to-Speech</h4>
+      <button class="close-tts">&times;</button>
+    </div>
+    <div class="tts-controls-row">
+      <button id="playTTS" class="tts-btn">Play</button>
+      <button id="pauseTTS" class="tts-btn">Pause</button>
+      <button id="stopTTS" class="tts-btn">Stop</button>
+    </div>
+    <div class="tts-controls-row">
+      <label for="voiceSelect">Voice:</label>
+      <select id="voiceSelect"></select>
+    </div>
+    <div class="tts-controls-row">
+      <label for="rateControl">Speed:</label>
+      <input type="range" id="rateControl" min="0.5" max="2" step="0.1" value="1">
+      <span id="rateValue">1.0</span>
+    </div>
   </div>
 
   <!-- Color Blind Filters (SVG) -->
@@ -68,14 +81,18 @@
   <!-- Cards Section -->
   <section class="cards">
     <div class="filter">
-      <button>All</button>
-      <button>Works</button>
-      <button>Research</button>
-      <button>Exhibition</button>
-      <button>Spatial</button>
-      <button>Product</button>
-      <button>Interaction</button>
-      <button>Discussion</button>
+        <div class="button-row">
+            <button>All</button>
+            <button>Works</button>
+            <button>Research</button>
+            <button>Exhibition</button>
+            <button>Spatial</button>
+        </div>
+        <div class="button-row">
+            <button>Product</button>
+            <button>Interaction</button>
+            <button>Discussion</button>
+        </div>
     </div>
 
     <div class="card-list">
@@ -147,93 +164,104 @@
         <a href="#" class="footer-link">Privacy Policy</a>
         <a href="https://instagram.com/theegral" target="_blank">IG: theegral</a>
         <a href="mailto:theegral@gmail.com">E: theegral@gmail.com</a>
-        <span id="currentTime">12:00</span>
+        <div class="clock" id="indonesiaClock">00:00:00</div>
       </div>
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="backtotop">↑</button>
+
   <!-- Visibility button dengan rover.gif -->
-  <button id="visibilityBtn">
+  <button id="visibilityBtn" class="visibility-btn" aria-label="Accessibility Settings">
     <img src="rover.gif" alt="Accessibility Settings">
   </button>
 
   <!-- Accessibility Panel -->
-  <div id="accessibilityPanel">
-    <button class="close-panel">&times;</button>
-    <h3>Accessibility Settings</h3>
-    
-    <div class="accessibility-option">
-      <label for="lightDark">Light/Dark Mode</label>
-      <select id="lightDark">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+  <div id="accessibilityPanel" class="accessibility-panel">
+    <div class="panel-header">
+      <h3>Accessibility Settings</h3>
+      <button class="close-panel" aria-label="Close accessibility panel">&times;</button>
     </div>
     
-    <div class="accessibility-option">
-      <label for="highContrast">High Contrast</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="highContrast">
-        <span class="slider"></span>
+    <div class="panel-content">
+      <div class="accessibility-option">
+        <label for="lightDark">Light/Dark Mode</label>
+        <select id="lightDark">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="dyslexia">Dyslexia-Friendly Font</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="dyslexia">
-        <span class="slider"></span>
+      
+      <div class="accessibility-option">
+        <label for="highContrast">High Contrast</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="highContrast">
+          <span class="slider"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="textToSpeech">Text-to-Speech</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="textToSpeech">
-        <span class="slider"></span>
+      
+      <div class="accessibility-option">
+        <label for="dyslexia">Dyslexia-Friendly Font</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="dyslexia">
+          <span class="slider"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="magnification">Magnification</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="magnification">
-        <span class="slider"></span>
+      
+      <div class="accessibility-option">
+        <label for="textToSpeech">Text-to-Speech</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="textToSpeech">
+          <span class="slider"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="keyboardNav">Keyboard Navigation</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="keyboardNav">
-        <span class="slider"></span>
+      
+      <div class="accessibility-option">
+        <label for="magnification">Magnification</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="magnification">
+          <span class="slider"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="reducedMotion">Reduced Motion</label>
-      <div class="toggle-switch">
-        <input type="checkbox" id="reducedMotion">
-        <span class="slider"></span>
+      
+      <div class="accessibility-option">
+        <label for="keyboardNav">Keyboard Navigation</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="keyboardNav">
+          <span class="slider"></span>
+        </div>
       </div>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="colorBlind">Color Blind Mode</label>
-      <select id="colorBlind">
-        <option value="none">None</option>
-        <option value="protanopia">Protanopia</option>
-        <option value="deuteranopia">Deuteranopia</option>
-        <option value="tritanopia">Tritanopia</option>
-      </select>
-    </div>
-    
-    <div class="accessibility-option">
-      <label for="language">Language</label>
-      <select id="language">
-        <option value="english">English</option>
-        <option value="indonesian">Bahasa Indonesia</option>
-      </select>
+      
+      <div class="accessibility-option">
+        <label for="reducedMotion">Reduced Motion</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="reducedMotion">
+          <span class="slider"></span>
+        </div>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="colorBlind">Color Blind Mode</label>
+        <select id="colorBlind">
+          <option value="none">None</option>
+          <option value="protanopia">Protanopia</option>
+          <option value="deuteranopia">Deuteranopia</option>
+          <option value="tritanopia">Tritanopia</option>
+        </select>
+      </div>
+      
+      <div class="accessibility-option">
+        <label for="language">Language</label>
+        <select id="language">
+          <option value="english">English</option>
+          <option value="indonesian">Bahasa Indonesia</option>
+        </select>
+      </div>
+      
+      <div class="accessibility-option">
+        <button id="resetSettings" class="reset-btn">Reset All Settings</button>
+      </div>
     </div>
   </div>
 
