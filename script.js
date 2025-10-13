@@ -18,7 +18,7 @@ function typeWriter() {
       finalTextEl.innerHTML += '<span class="cursor"></span>';
     }
     i++;
-    const speed = Math.random() * 20 + 80;
+    const speed = Math.random() * 30 + 80;
     setTimeout(typeWriter, speed);
   } else {
     finalTextEl.innerHTML = finalTextEl.innerHTML.replace(/<span class="cursor"><\/span>/, '');
