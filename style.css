@@ -513,7 +513,7 @@ footer {
 }
 
 .backtotop.show {
-  opacity: 1;
+  opacity: 30%;
   transform: translateY(0);
 }
 
