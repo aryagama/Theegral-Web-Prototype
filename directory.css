@@ -204,6 +204,14 @@ header .logo img {
   display: flex;
   flex-direction: column;
   gap: 32px 48px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* Animasi fade in untuk seluruh halaman */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 }
 
 .directory-list .item {
