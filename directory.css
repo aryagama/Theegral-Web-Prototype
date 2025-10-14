@@ -13,13 +13,6 @@ body {
   padding-top: 100px;
   transition: all 0.3s ease;
   opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
-}
-
-/* Animasi fade in untuk seluruh halaman */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 /* =============================================== */
