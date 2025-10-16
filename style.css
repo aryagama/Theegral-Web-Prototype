@@ -381,9 +381,11 @@ header .logo img {
   width: 100%;
   margin-top: 40px;
   display: flex;
+  flex-direction: column; /* Tambahkan ini */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 15px; /* Beri jarak antara card-text dan button */
 }
 
 .card-text {
@@ -406,6 +408,24 @@ header .logo img {
   font-size: 13px;
   color: #555;
   margin: 0;
+}
+
+/* Style untuk btn-other */
+.btn-other {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #f0f0f0;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.btn-other:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
 }
 
 .btn-other {
@@ -437,6 +457,21 @@ header .logo img {
 
 .card:hover .image-container img {
   transform: scale(1.05);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link:hover .card {
+  transform: translateY(-5px);
+}
+
+.card {
+  transition: all 0.3s ease;
+  /* existing card styles */
 }
 
 /* =============================================== */
