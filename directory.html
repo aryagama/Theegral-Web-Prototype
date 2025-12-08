@@ -8,10 +8,10 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
-   <!-- Header -->
+  <!-- Header -->
   <header>
     <div class="logo">
-       <img src="Logo Theegral.svg" alt="Theegral Logo">
+      <img src="Logo Theegral.svg" alt="Theegral Logo">
     </div>
     <nav>
       <a href="works.html">Works</a>
@@ -25,63 +25,177 @@
     <h2>Directory</h2>
 
     <!-- Filter Tags -->
-<div class="filter-tags">
-  <div class="filter-row">
-    <button class="filter-btn" data-filter="All">All</button>
-    <button class="filter-btn" data-filter="Works">Works</button>
-    <button class="filter-btn" data-filter="Artworks">Artworks</button>
-    <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
-    <button class="filter-btn" data-filter="Research">Research</button>
-  </div>
-  <div class="filter-row">
-    <button class="filter-btn" data-filter="Product">Product</button>
-    <button class="filter-btn" data-filter="Interaction">Interaction</button>
-    <button class="filter-btn" data-filter="Discussion">Discussion</button>
-  </div>
-</div>
+    <div class="filter-tags">
+      <div class="filter-row">
+        <button class="filter-btn" data-filter="All">All</button>
+        <button class="filter-btn" data-filter="Works">Works</button>
+        <button class="filter-btn" data-filter="Artworks">Artworks</button>
+        <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
+        <button class="filter-btn" data-filter="Research">Research</button>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn" data-filter="Product">Product</button>
+        <button class="filter-btn" data-filter="Interaction">Interaction</button>
+        <button class="filter-btn" data-filter="Discussion">Discussion</button>
+      </div>
+    </div>
 
     <!-- Directory List -->
     <div class="directory-list">
-      <div class="item">
-        <div class="title">An Ode to<br>Life</div>
-        <div class="creator">Shidqi Nur Qolbi</div>
-        <div class="type">Artworks</div>
-        <div class="year">2025</div>
+      <!-- Item 1 -->
+      <div class="item" data-type="Artworks">
+        <div class="item-main" data-href="detail1.html">
+          <div class="title">An Ode to<br>Life</div>
+          <div class="creator">Shidqi Nur Qolbi</div>
+          <div class="type">Artworks</div>
+          <div class="year">2025</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="BURDEN.jpg" alt="An Ode to Life" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>An Ode to Life</h3>
+                <p>A contemporary artwork exploring the fragility and beauty of human existence through mixed media. This piece combines traditional painting techniques with digital elements to create a multi-layered narrative about memory, time, and the human condition.</p>
+                <p>The artwork was exhibited at the National Gallery in 2025 as part of the "New Horizons" exhibition, receiving critical acclaim for its innovative approach to combining analog and digital art forms.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <div class="title">Tondi</div>
-        <div class="creator">Debora Violin</div>
-        <div class="type">Artworks</div>
-        <div class="year">2024</div>
+      <!-- Item 2 -->
+      <div class="item" data-type="Artworks">
+        <div class="item-main" data-href="detail2.html">
+          <div class="title">Tondi</div>
+          <div class="creator">Debora Violin</div>
+          <div class="type">Artworks</div>
+          <div class="year">2024</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="to" alt="Tondi" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>Tondi</h3>
+                <p>An exploration of circular forms in contemporary sculpture, "Tondi" reinterprets traditional medallion art through modernist lens. Created using recycled metals and found objects, this piece comments on sustainability and the cyclical nature of materials.</p>
+                <p>The sculpture was part of the 2024 "Eco-Art Biennale" where it won the Sustainable Art Prize for its innovative use of materials and environmental message.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <div class="title">Sebatang<br>Mangrove</div>
-        <div class="creator">Yunan Aria Gama</div>
-        <div class="type">Research</div>
-        <div class="year">2024</div>
+      <!-- Item 3 -->
+      <div class="item" data-type="Research">
+        <div class="item-main" data-href="detail3.html">
+          <div class="title">Sebatang<br>Mangrove</div>
+          <div class="creator">Yunan Aria Gama</div>
+          <div class="type">Research</div>
+          <div class="year">2024</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80" alt="Sebatang Mangrove" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>Sebatang Mangrove</h3>
+                <p>A comprehensive research project examining coastal ecosystems in Southeast Asia, focusing on mangrove conservation and community-based sustainability practices. The research combines field studies with ethnographic interviews to understand the relationship between local communities and their environment.</p>
+                <p>Published in the Journal of Environmental Studies in 2024, this research has been cited in several policy papers regarding coastal management in the region.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <div class="title">Lorem Ipsum<br>Dolor Sit</div>
-        <div class="creator">Debora Violin,<br> Shidqi Nur Qolbi & <br>Yunan Aria Gama</div>
-        <div class="type">Artworks</div>
-        <div class="year">2024</div>
+      <!-- Item 4 -->
+      <div class="item" data-type="Artworks">
+        <div class="item-main" data-href="detail4.html">
+          <div class="title">Lorem Ipsum<br>Dolor Sit</div>
+          <div class="creator">Debora Violin,<br> Shidqi Nur Qolbi & <br>Yunan Aria Gama</div>
+          <div class="type">Artworks</div>
+          <div class="year">2024</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lorem Ipsum Dolor Sit" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>Lorem Ipsum Dolor Sit</h3>
+                <p>A collaborative multimedia installation that examines the relationship between text, meaning, and visual representation. The work deconstructs the traditional "lorem ipsum" placeholder text, transforming it into a visual and auditory experience.</p>
+                <p>This installation was featured in the 2024 International Digital Art Festival, where it received the "Best Collaborative Work" award for its innovative approach to interdisciplinary creation.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <div class="title">Ipsum<br>Disnativism</div>
-        <div class="creator">Debora Violin</div>
-        <div class="type">Research</div>
-        <div class="year">2023</div>
+      <!-- Item 5 -->
+      <div class="item" data-type="Research">
+        <div class="item-main" data-href="detail5.html">
+          <div class="title">Ipsum<br>Disnativism</div>
+          <div class="creator">Debora Violin</div>
+          <div class="type">Research</div>
+          <div class="year">2023</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ipsum Disnativism" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>Ipsum Disnativism</h3>
+                <p>A theoretical framework exploring digital nativism in contemporary art practice. This research paper examines how artists who grew up in the digital age approach creation differently from previous generations, with particular focus on hybrid digital-analog methodologies.</p>
+                <p>Presented at the 2023 Conference on Digital Humanities, this paper has become a foundational text in discussions about generational shifts in artistic practice.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="item">
-        <div class="title">Adiscipting</div>
-        <div class="creator">Yunan Aria Gama</div>
-        <div class="type">Research</div>
-        <div class="year">2023</div>
+      <!-- Item 6 -->
+      <div class="item" data-type="Research">
+        <div class="item-main" data-href="detail6.html">
+          <div class="title">Adiscipting</div>
+          <div class="creator">Yunan Aria Gama</div>
+          <div class="type">Research</div>
+          <div class="year">2023</div>
+          <div class="expand-indicator">+</div>
+        </div>
+        <div class="item-expand">
+          <div class="expand-content">
+            <div class="expand-left">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Adiscipting" class="expand-image">
+            </div>
+            <div class="expand-right">
+              <div class="expand-description">
+                <h3>Adiscipting</h3>
+                <p>An investigation into adaptive scripting in interactive media, exploring how narrative structures evolve based on user interaction. The research combines computer science methodologies with literary theory to propose new models for interactive storytelling.</p>
+                <p>Published in the International Journal of Digital Narrative, this research has been influential in the development of adaptive narrative systems in gaming and interactive media.</p>
+                <button class="view-details-btn">View Full Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -89,7 +203,8 @@
     <h3 class="other">Other</h3>
   </section>
 
-    <footer>
+  <!-- Footer -->
+  <footer>
     <div class="footer-main">
       <div class="footer-left">
         <p>
@@ -113,7 +228,7 @@
     </div>
   </footer>
 
-   <!-- Back to Top Button -->
+  <!-- Back to Top Button -->
   <button id="backToTop" class="backtotop">↑</button>
 
   <!-- Visibility button dengan rover.gif -->
