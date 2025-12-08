@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#ffffff">
   <title>Theegral Website</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="Logo Theegral (WHITE).svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Load OpenDyslexic Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.min.css">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <!-- Text to Speech Controls -->
@@ -43,6 +49,9 @@
       <filter id="tritanopia">
         <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0 0, 0.433, 0.567, 0, 0 0, 0.475, 0.525, 0, 0 0, 0, 0, 1, 0"></feColorMatrix>
       </filter>
+      <filter id="high-saturate">
+        <feColorMatrix type="saturate" values="2"></feColorMatrix>
+      </filter>
     </defs>
   </svg>
 
@@ -51,13 +60,22 @@
     <div class="logo">
        <img src="Logo Theegral.svg" alt="Theegral Logo">
     </div>
-    <nav>
+    <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="main-nav">
+      <a href="works.html">Works</a>
+      <a href="directory.html">Directory</a>
+      <a href="about.html">About</a>
+    </nav>
+    <nav class="mobile-nav">
       <a href="works.html">Works</a>
       <a href="directory.html">Directory</a>
       <a href="about.html">About</a>
     </nav>
   </header>
-  
 
   <!-- Hero Section -->
   <section class="hero">
@@ -74,79 +92,131 @@
       <div id="finalText"></div>
     </div>
 
-    <div id="bodytext"
-    
-
     <!-- Spacer untuk memberikan ruang scroll -->
     <div class="scroll-spacer"></div>
   </section>
 
   <!-- Cards Section -->
   <section class="cards">
-  <div class="filter-row">
-    <button class="filter-btn" data-filter="All">All</button>
-    <button class="filter-btn" data-filter="Works">Works</button>
-    <button class="filter-btn" data-filter="Artworks">Artworks</button>
-    <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
-    <button class="filter-btn" data-filter="Research">Research</button>
-  </div>
-  <div class="filter-row">
-    <button class="filter-btn" data-filter="Product">Product</button>
-    <button class="filter-btn" data-filter="Interaction">Interaction</button>
-    <button class="filter-btn" data-filter="Discussion">Discussion</button>
-  </div>
-</div>
-
-<div class="card-list">
-
-  <!-- CARD 2 -->
-  <a href="work.html" class="card-link">
-    <div class="card">
-      <div class="image-container">
-        <img src="DS.png" alt="Project 2">
-        <span class="tag">Artworks</span>
-        <span class="tag">Exhibition</span>
+    <div class="filter-tags">
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Works">Works</button>
+        <button class="filter-btn" data-filter="Artworks">Artworks</button>
+        <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
+        <button class="filter-btn" data-filter="Research">Research</button>
       </div>
-
-      <div class="card-info">
-        <div class="card-text">
-          <p>Shidqi Nur Qolbi</p>
-          <h3>Double Standard (Bricks by Bricks)</h3>
-        </div>
+      <div class="filter-row">
+        <button class="filter-btn" data-filter="Product">Product</button>
+        <button class="filter-btn" data-filter="Interaction">Interaction</button>
+        <button class="filter-btn" data-filter="Discussion">Discussion</button>
       </div>
     </div>
-  </a>
 
-  <!-- CARD 3 -->
-  <a href="#" class="card-link">
-    <div class="card">
-      <div class="image-container">
-        <img src="Mulakma.png" alt="Project 3">
-        <span class="tag">Artworks</span>
-      </div>
+    <div class="card-list">
+      <!-- CARD 1 -->
+      <a href="work 1.html" class="card-link">
+        <div class="card" data-tags="Artworks,Exhibition">
+          <div class="image-container">
+            <img src="DS.png" alt="Project 2">
+            <span class="tag">Artworks</span>
+            <span class="tag">Exhibition</span>
+          </div>
 
-      <div class="card-info">
-        <div class="card-text">
-          <p>Debora Violin</p>
-          <h3>Mulakma Tondi</h3>
+          <div class="card-info">
+            <div class="card-text">
+              <p>Shidqi Nur Qolbi</p>
+              <h3>Double Standard (Bricks by Bricks)</h3>
+            </div>
+          </div>
         </div>
-        <!-- BUTTON OTHER DIPINDAH KE LUAR CARD-TEXT -->
-        <a href="#" class="btn-other">Other</a>
-      </div>
-    </div>
-  </a>
-</div>
+      </a>
 
+      <!-- CARD 2 -->
+      <a href="#" class="card-link">
+        <div class="card" data-tags="Artworks">
+          <div class="image-container">
+            <img src="Mulakma.png" alt="Project 3">
+            <span class="tag">Artworks</span>
+          </div>
+
+          <div class="card-info">
+            <div class="card-text">
+              <p>Debora Violin</p>
+              <h3>Mulakma Tondi</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 3 - Contoh tambahan untuk demonstrasi filter -->
+      <a href="#" class="card-link">
+        <div class="card" data-tags="Works,Product">
+          <div class="image-container">
+            <img src="BUSIAN.jpg" alt="Project 4">
+            <span class="tag">Works</span>
+            <span class="tag">Product</span>
+          </div>
+
+          <div class="card-info">
+            <div class="card-text">
+              <p>John Doe</p>
+              <h3>Sample Product Design</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 4 - Contoh tambahan untuk demonstrasi filter -->
+      <a href="#" class="card-link">
+        <div class="card" data-tags="Research,Discussion">
+          <div class="image-container">
+            <img src="BURDEN.jpg" alt="Project 5">
+            <span class="tag">Research</span>
+            <span class="tag">Discussion</span>
+          </div>
+
+          <div class="card-info">
+            <div class="card-text">
+              <p>Jane Smith</p>
+              <h3>Research Paper 2023</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 5 - Contoh tambahan untuk demonstrasi filter -->
+      <a href="#" class="card-link">
+        <div class="card" data-tags="Exhibition,Interaction">
+          <div class="image-container">
+            <img src="TRIBUN.jpg" alt="Project 6">
+            <span class="tag">Exhibition</span>
+            <span class="tag">Interaction</span>
+          </div>
+
+          <div class="card-info">
+            <div class="card-text">
+              <p>Alex Johnson</p>
+              <h3>Interactive Installation</h3>
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
   <footer>
     <div class="footer-main">
       <div class="footer-left">
-        <p>
+        <p class="english-text">
           We acknowledge the Traditional Custodians of the land on which we live and work, 
           and pay our respects to Elders past, present and emerging. 
           We recognise their continuing connection to land, waters and culture.
+        </p>
+        <p class="indonesian-text" style="display: none;">
+          Kami mengakui Penjaga Tradisional tanah tempat kami hidup dan bekerja,
+          dan memberikan penghormatan kepada Para Tetua masa lalu, masa kini, dan yang akan datang.
+          Kami mengakui hubungan berkelanjutan mereka dengan tanah, perairan, dan budaya.
         </p>
       </div>
     </div>
@@ -172,90 +242,127 @@
     <img src="rover.gif" alt="Accessibility Settings">
   </button>
 
-  <!-- Accessibility Panel -->
+  <!-- Accessibility Panel Baru dengan Layout 2 Kolom -->
   <div id="accessibilityPanel" class="accessibility-panel">
     <div class="panel-header">
-      <h3>Accessibility Settings</h3>
+      <h3>Accessibility Settings <span class="shortcut-hint">(Shortcuts: Q, C, F, =, T, D, V, L, R)</span></h3>
       <button class="close-panel" aria-label="Close accessibility panel">&times;</button>
     </div>
     
     <div class="panel-content">
-      <div class="accessibility-option">
-        <label for="lightDark">Light/Dark Mode</label>
-        <select id="lightDark">
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="highContrast">High Contrast</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="highContrast">
-          <span class="slider"></span>
+      <div class="accessibility-grid">
+        <!-- Baris 1 - 2 Kolom -->
+        <div class="accessibility-row">
+          <div class="accessibility-card" data-setting="motion" data-shortcut="Q">
+            <div class="card-icon">
+              <i class="fas fa-running"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Motion <span class="shortcut-key">[Q]</span></span>
+              <span class="card-value" id="motionValue">Normal</span>
+            </div>
+          </div>
+          
+          <div class="accessibility-card contrast-card" data-setting="contrast" data-shortcut="C">
+            <div class="card-icon">
+              <i class="fas fa-adjust"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Contrast <span class="shortcut-key">[C]</span></span>
+              <span class="card-value" id="contrastValue">Normal</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="dyslexia">Dyslexia-Friendly Font</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="dyslexia">
-          <span class="slider"></span>
+        
+        <!-- Baris 2 - 2 Kolom -->
+        <div class="accessibility-row">
+          <div class="accessibility-card" data-setting="fontSize" data-shortcut="F">
+            <div class="card-icon">
+              <i class="fas fa-text-height"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Font Size <span class="shortcut-key">[F]</span></span>
+              <span class="card-value" id="fontSizeValue">Normal</span>
+            </div>
+          </div>
+          
+          <div class="accessibility-card" data-setting="textToSpeech" data-shortcut="=">
+            <div class="card-icon">
+              <i class="fas fa-volume-up"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Text Speech <span class="shortcut-key">[=]</span></span>
+              <span class="card-value" id="ttsValue">Off</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="textToSpeech">Text-to-Speech</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="textToSpeech">
-          <span class="slider"></span>
+        
+        <!-- Baris 3 - 2 Kolom -->
+        <div class="accessibility-row">
+          <div class="accessibility-card" data-setting="theme" data-shortcut="T">
+            <div class="card-icon">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Theme <span class="shortcut-key">[T]</span></span>
+              <span class="card-value" id="themeValue">Light</span>
+            </div>
+          </div>
+          
+          <div class="accessibility-card" data-setting="dyslexia" data-shortcut="D">
+            <div class="card-icon">
+              <i class="fas fa-font"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Dyslexia <span class="shortcut-key">[D]</span></span>
+              <span class="card-value" id="dyslexiaValue">Off</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="magnification">Magnification</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="magnification">
-          <span class="slider"></span>
+        
+        <!-- Baris 4 - 2 Kolom -->
+        <div class="accessibility-row">
+          <div class="accessibility-card" data-setting="colorBlind" data-shortcut="V">
+            <div class="card-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Color Mode <span class="shortcut-key">[V]</span></span>
+              <span class="card-value" id="colorValue">Normal</span>
+            </div>
+          </div>
+          
+          <div class="accessibility-card language-card" data-setting="language" data-shortcut="L">
+            <div class="card-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Language <span class="shortcut-key">[L]</span></span>
+              <span class="card-value" id="languageValue">EN</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="keyboardNav">Keyboard Navigation</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="keyboardNav">
-          <span class="slider"></span>
+        
+        <!-- Baris 5 - Full Width Reset -->
+        <div class="accessibility-row">
+          <div class="accessibility-card reset-card" id="resetSettings" data-shortcut="R">
+            <div class="card-icon">
+              <i class="fas fa-redo"></i>
+            </div>
+            <div class="card-text">
+              <span class="card-title">Reset All Settings <span class="shortcut-key">[R]</span></span>
+              <span class="card-value">Click or press R</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="reducedMotion">Reduced Motion</label>
-        <div class="toggle-switch">
-          <input type="checkbox" id="reducedMotion">
-          <span class="slider"></span>
+        
+        <!-- Shortcut Help -->
+        <div class="shortcut-help">
+          <p><strong>Keyboard Shortcuts:</strong></p>
+          <p>Q: Motion | C: Contrast | F: Font Size | =: Text Speech</p>
+          <p>T: Theme | D: Dyslexia | V: Color Mode | L: Language | R: Reset</p>
         </div>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="colorBlind">Color Blind Mode</label>
-        <select id="colorBlind">
-          <option value="none">None</option>
-          <option value="protanopia">Protanopia</option>
-          <option value="deuteranopia">Deuteranopia</option>
-          <option value="tritanopia">Tritanopia</option>
-        </select>
-      </div>
-      
-      <div class="accessibility-option">
-        <label for="language">Language</label>
-        <select id="language">
-          <option value="english">English</option>
-          <option value="indonesian">Bahasa Indonesia</option>
-        </select>
-      </div>
-      
-      <div class="accessibility-option">
-        <button id="resetSettings" class="reset-btn">Reset All Settings</button>
       </div>
     </div>
   </div>
