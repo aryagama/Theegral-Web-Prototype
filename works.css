@@ -99,7 +99,7 @@ header nav {
 header nav a {
   margin-left: 15px;
   padding: 8px 16px;
-  border: 0.5px solid #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 25px;
   text-decoration: none;
   color: black;
@@ -115,6 +115,10 @@ header nav a:hover {
   border: 0.5px solid #000000;
   background: transparent;
   border-radius: 25px;
+}
+
+header .logo {
+  cursor: pointer;
 }
 
 header .logo img {
@@ -881,7 +885,7 @@ footer {
 /* =============================================== */
 .visibility-btn {
   position: fixed;
-  bottom: 20px;
+  bottom: 30px;
   left: 20px;
   background: transparent;
   border: none;
