@@ -101,7 +101,7 @@ header nav {
 }
 
 header nav a {
-  margin-left: 15px;
+  margin-left: 16.5px;
   padding: 8px 16px;
   border: 0.5px solid #ffffff;
   border-radius: 25px;
@@ -119,6 +119,10 @@ header nav a:hover {
   border: 0.5px solid #000000;
   background: transparent;
   border-radius: 25px;
+}
+
+header .logo {
+  cursor: pointer;
 }
 
 header .logo img {
