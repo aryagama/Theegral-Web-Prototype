@@ -22,6 +22,22 @@ body {
   to { opacity: 1; }
 }
 
+/* Fade In Transition for Text */
+.fade-in-text {
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* =============================================== */
 /* HEADER STYLES - IMPROVED SCROLL BEHAVIOR */
 /* =============================================== */
@@ -144,39 +160,14 @@ header .logo img {
   font-size: 48px;
   max-width: 900px;
   text-align: center;
-  line-height: 48px;
+  line-height: 1.2;
   white-space: pre-line;
   opacity: 0;
   position: relative;
   min-height: 100px;
-  animation: fadeInUp 1.2s ease 1.2s forwards;
   z-index: 2;
   top: -50px;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Efek cursor berkedip */
-.cursor {
-  display: inline-block;
-  width: 3px;
-  background-color: #000;
-  margin-left: 2px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  animation: fadeInUp 1s ease 0.5s forwards;
 }
 
 /* =============================================== */
@@ -256,8 +247,8 @@ header .logo img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* jarak antar baris */
-  margin-bottom: 100px;
+  gap: 3px; /* jarak antar baris */
+  margin-bottom: 50px;
 }
 
 /* --- Baris atas dan bawah --- */
@@ -297,15 +288,6 @@ header .logo img {
   border-color: #111;
   opacity: 1;
   transform: translateY(-1px);
-}
-
-.filter-btn.active::after {
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  background-color: #000;
 }
 
 /* --- Responsif --- */
@@ -394,6 +376,7 @@ header .logo img {
   align-items: center;
   gap: 5px;
   font-size: 15px;
+  text-align: center;
 }
 
 .card-text h3 {
@@ -402,46 +385,13 @@ header .logo img {
   margin: 0;
   color: #111;
   letter-spacing: -0.3px;
+  line-height: 1.2;
 }
 
 .card-text p {
   font-size: 13px;
   color: #555;
   margin: 0;
-}
-
-/* Style untuk btn-other */
-.btn-other {
-  display: inline-block;
-  padding: 8px 20px;
-  background-color: #f0f0f0;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-}
-
-.btn-other:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
-}
-
-.btn-other {
-  display: inline-block;
-  margin-top: 80px;
-  padding: 6px 16px;
-  font-size: 32px;
-  border-radius: 30px;
-  color: #000;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.btn-other:hover {
-  background: #000;
-  color: #fff;
 }
 
 /* Hover interaction */
@@ -475,6 +425,144 @@ header .logo img {
 }
 
 /* =============================================== */
+/* FILTER FUNCTIONALITY STYLES */
+/* =============================================== */
+.card.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  transform: scale(0.9) !important;
+  pointer-events: none !important;
+}
+
+.card.visible {
+  display: block !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  pointer-events: all !important;
+}
+
+/* Animation for filter transition */
+.card-list {
+  transition: all 0.4s ease;
+}
+
+.card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Filter button active state enhancement */
+.filter-btn.active {
+  background-color: #111;
+  color: #fff;
+  border-color: #111;
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth transition for filter changes */
+.card-link {
+  transition: all 0.4s ease;
+}
+
+/* Ensure proper spacing when filtering */
+.cards {
+  min-height: 80vh;
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #666;
+  grid-column: 1 / -1;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.no-results.show {
+  display: block;
+}
+
+/* =============================================== */
+/* TAG STYLES */
+/* =============================================== */
+.image-container .tag {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: #ffffff;
+  padding: 3px 25px;
+  border-radius: 30px;
+  border: 0.5px solid #000;
+  font-size: 12px;
+  font-weight: lighter;
+  transition: all 0.4s ease;
+  z-index: 2;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.9;
+}
+
+.image-container .tag:not(:last-child) {
+  margin-right: 5px;
+}
+
+/* Hover effect for tags */
+.image-container .tag:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments for tags */
+body.dark-mode .image-container .tag {
+  background: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #555;
+}
+
+/* High contrast adjustments for tags */
+body.high-contrast .image-container .tag {
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+/* =============================================== */
+/* ANIMATIONS FOR FILTER TRANSITIONS */
+/* =============================================== */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.card.fade-in {
+  animation: cardFadeIn 0.4s ease forwards;
+}
+
+.card.fade-out {
+  animation: cardFadeOut 0.3s ease forwards;
+}
+
+/* =============================================== */
 /* FOOTER */
 /* =============================================== */
 footer {
@@ -484,7 +572,7 @@ footer {
   z-index: 10;
 }
 
-.footer-content {
+.footer-main {
   display: flex;
   font-size: large;
   justify-content: space-between;
@@ -641,16 +729,25 @@ footer {
   display: block;
 }
 
+/* FIX: Visibility button tetap terlihat saat color blind mode aktif */
+.protanopia .visibility-btn,
+.deuteranopia .visibility-btn,
+.tritanopia .visibility-btn,
+.saturate .visibility-btn {
+  filter: none !important;
+  z-index: 2001 !important;
+}
+
 /* =============================================== */
-/* ACCESSIBILITY PANEL */
+/* ACCESSIBILITY PANEL BARU (2 KOLOM DENGAN SCROLL) */
 /* =============================================== */
 .accessibility-panel {
   position: fixed;
   bottom: 110px;
   left: 20px;
-  width: 320px;
+  width: 380px;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   padding: 0;
   z-index: 1999;
@@ -658,7 +755,7 @@ footer {
   flex-direction: column;
   max-height: 70vh;
   overflow: hidden;
-  border: 0.5px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -673,16 +770,28 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 18px 20px;
   border-bottom: 1px solid #f0f0f0;
   background: #f8f8f8;
+  flex-shrink: 0;
 }
 
 .panel-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   color: #333;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.shortcut-hint {
+  font-size: 11px;
+  color: #666;
+  font-weight: normal;
+  font-style: italic;
 }
 
 .close-panel {
@@ -705,98 +814,194 @@ footer {
 }
 
 .panel-content {
-  padding: 15px 20px;
+  padding: 20px;
   overflow-y: auto;
   max-height: calc(70vh - 70px);
+  display: flex;
+  flex-direction: column;
 }
 
-.accessibility-option {
+.accessibility-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.accessibility-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.accessibility-row:last-child {
+  margin-bottom: 10px;
+}
+
+/* Accessibility Card Styles */
+.accessibility-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 18px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100px;
+  user-select: none;
+  position: relative;
+}
+
+.accessibility-card:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accessibility-card:active {
+  transform: translateY(0);
+}
+
+.accessibility-card.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.accessibility-card.active .card-icon {
+  color: white;
+}
+
+.accessibility-card.active .card-title,
+.accessibility-card.active .card-value,
+.accessibility-card.active .shortcut-key {
+  color: white;
+}
+
+/* Special cards */
+.contrast-card.active {
+  background: #000;
+  border-color: #000;
+}
+
+.language-card.active {
+  background: #28a745;
+  border-color: #28a745;
+}
+
+.reset-card {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  grid-column: span 2;
+}
+
+.reset-card:hover {
+  background: #f5c6cb;
+}
+
+.reset-card .card-icon {
+  color: #721c24;
+}
+
+/* Card content */
+.card-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #495057;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Theme icon special */
+.accessibility-card[data-setting="theme"] .card-icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.accessibility-card[data-setting="theme"] .card-icon .fa-sun {
+  position: absolute;
+  opacity: 0.5;
+}
+
+.accessibility-card[data-setting="theme"] .card-icon .fa-moon {
+  position: absolute;
+  opacity: 0.5;
+}
+
+.accessibility-card[data-setting="theme"].active .card-icon .fa-sun {
+  opacity: 1;
+}
+
+.accessibility-card[data-setting="theme"]:not(.active) .card-icon .fa-moon {
+  opacity: 1;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
 }
 
-.accessibility-option:last-child {
-  border-bottom: none;
+.shortcut-key {
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #666;
+  font-family: monospace;
 }
 
-.accessibility-option label {
-  font-size: 14px;
-  cursor: pointer;
+.accessibility-card.active .shortcut-key {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.card-value {
+  font-size: 12px;
+  color: #6c757d;
   font-weight: 500;
-  flex: 1;
+  margin-top: 2px;
 }
 
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 24px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-select {
-  padding: 6px 12px;
+/* Shortcut Help */
+.shortcut-help {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #fff;
-  font-size: 14px;
-  min-width: 120px;
+  border: 1px solid #e9ecef;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.reset-btn {
-  width: 100%;
-  padding: 10px;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+.shortcut-help p {
+  margin-bottom: 8px;
 }
 
-.reset-btn:hover {
-  background: #e0e0e0;
+.shortcut-help strong {
+  color: #495057;
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* =============================================== */
@@ -884,6 +1089,7 @@ select {
 
 .tts-controls-row input[type="range"] {
   flex: 1;
+  cursor: pointer;
 }
 
 #rateValue {
@@ -938,14 +1144,14 @@ body.dark-mode footer {
   border-top: 1px solid #333;
 }
 
-body.dark-mode .filter button {
+body.dark-mode .filter-btn {
   border: 1px solid #f0f0f0;
   color: #f0f0f0;
   background: transparent;
 }
 
-body.dark-mode .filter button:hover,
-body.dark-mode .filter button.active {
+body.dark-mode .filter-btn:hover,
+body.dark-mode .filter-btn.active {
   background: #f0f0f0;
   color: #121212;
 }
@@ -961,14 +1167,51 @@ body.dark-mode .panel-header {
   border-bottom: 1px solid #333;
 }
 
-body.dark-mode .accessibility-option {
-  border-bottom: 1px solid #333;
+body.dark-mode .accessibility-card {
+  background: #2a2a2a;
+  border-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark-mode .accessibility-card:hover {
+  background: #333;
+}
+
+body.dark-mode .accessibility-card.active {
+  background: #007bff;
+  border-color: #007bff;
+}
+
+body.dark-mode .card-title,
+body.dark-mode .card-value,
+body.dark-mode .shortcut-key {
+  color: #f0f0f0;
+}
+
+body.dark-mode .reset-card {
+  background: #721c24;
+  border-color: #721c24;
+  color: #f8d7da;
+}
+
+body.dark-mode .reset-card:hover {
+  background: #82232c;
+}
+
+body.dark-mode .reset-card .card-icon {
+  color: #f8d7da;
 }
 
 body.dark-mode .accessibility-panel select {
   background: #333;
   color: #f0f0f0;
   border: 1px solid #555;
+}
+
+body.dark-mode .shortcut-help {
+  background: #2a2a2a;
+  border-color: #333;
+  color: #f0f0f0;
 }
 
 body.dark-mode .reset-btn {
@@ -1011,6 +1254,7 @@ body.dark-mode .visibility-btn {
   background: transparent;
 }
 
+/* Contrast Modes */
 /* High Contrast */
 body.high-contrast {
   background: #000;
@@ -1030,7 +1274,7 @@ body.high-contrast footer {
   border-top: 2px solid #fff;
 }
 
-body.high-contrast .filter button {
+body.high-contrast .filter-btn {
   background: #fff;
   color: #000;
   border: 1px solid #fff;
@@ -1059,15 +1303,168 @@ body.high-contrast .accessibility-panel select {
   border: 1px solid #fff;
 }
 
+/* Hi-con (High Contrast Inverse) */
+body.hi-con {
+  background: #fff;
+  color: #000;
+  filter: contrast(2) brightness(0.9);
+}
+
+body.hi-con header {
+  background: #fff;
+  filter: contrast(2) brightness(0.9);
+}
+
+body.hi-con .cards {
+  background: #fff;
+  filter: contrast(2) brightness(0.9);
+}
+
+body.hi-con footer {
+  background: #fff;
+  border-top: 2px solid #000;
+  filter: contrast(2) brightness(0.9);
+}
+
+/* Saturate */
+body.saturate {
+  filter: saturate(2);
+}
+
+body.saturate .visibility-btn,
+body.saturate .accessibility-panel,
+body.saturate .tts-controls,
+body.saturate .backtotop {
+  filter: saturate(1) !important;
+}
+
+/* Light High Contrast */
+body.light-high-contrast {
+  background: #fff;
+  color: #000;
+}
+
+body.light-high-contrast header {
+  background: #fff;
+}
+
+body.light-high-contrast .cards {
+  background: #fff;
+}
+
+body.light-high-contrast footer {
+  background: #fff;
+  border-top: 2px solid #000;
+}
+
+body.light-high-contrast .filter-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+body.light-high-contrast header nav a {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+body.light-high-contrast .image-container .tag {
+  background: #000;
+  color: #fff;
+}
+
 /* Dyslexia Font */
 body.dyslexia-mode {
-  font-family: 'Comic Sans MS', 'OpenDyslexic', cursive, sans-serif;
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive, sans-serif;
   line-height: 1.6;
   letter-spacing: 1px;
 }
 
 body.dyslexia-mode * {
   font-family: inherit !important;
+}
+
+/* Font Size Classes */
+body.font-small {
+  font-size: 14px;
+}
+
+body.font-normal {
+  font-size: 16px;
+}
+
+body.font-large {
+  font-size: 18px;
+}
+
+body.font-larger {
+  font-size: 20px;
+}
+
+body.font-largest {
+  font-size: 22px;
+}
+
+/* Adjust specific elements for font size changes */
+body.font-small #finalText {
+  font-size: 36px;
+}
+
+body.font-normal #finalText {
+  font-size: 48px;
+}
+
+body.font-large #finalText {
+  font-size: 52px;
+}
+
+body.font-larger #finalText {
+  font-size: 56px;
+}
+
+body.font-largest #finalText {
+  font-size: 60px;
+}
+
+body.font-small .card-text h3 {
+  font-size: 28px;
+}
+
+body.font-normal .card-text h3 {
+  font-size: 32px;
+}
+
+body.font-large .card-text h3 {
+  font-size: 36px;
+}
+
+body.font-larger .card-text h3 {
+  font-size: 40px;
+}
+
+body.font-largest .card-text h3 {
+  font-size: 44px;
+}
+
+body.font-small .footer-left p {
+  font-size: 20px;
+}
+
+body.font-normal .footer-left p {
+  font-size: 24px;
+}
+
+body.font-large .footer-left p {
+  font-size: 26px;
+}
+
+body.font-larger .footer-left p {
+  font-size: 28px;
+}
+
+body.font-largest .footer-left p {
+  font-size: 30px;
 }
 
 /* Reduced Motion */
@@ -1078,45 +1475,66 @@ body.reduced-motion * {
   scroll-behavior: auto !important;
 }
 
-/* Color Blind Modes */
-body.protanopia {
+body.reduced-motion .poster:hover {
+  transform: none !important;
+  transition: none !important;
+}
+
+body.reduced-motion .card:hover {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Color Blind Modes - FIX: visibility button tidak kena filter */
+.protanopia body:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop),
+.deuteranopia body:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop),
+.tritanopia body:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop) {
   filter: url(#protanopia);
 }
 
-body.deuteranopia {
+body.protanopia:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop) {
+  filter: url(#protanopia);
+}
+
+body.deuteranopia:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop) {
   filter: url(#deuteranopia);
 }
 
-body.tritanopia {
+body.tritanopia:not(.visibility-btn):not(.accessibility-panel):not(.tts-controls):not(.backtotop) {
   filter: url(#tritanopia);
 }
 
-/* Magnification */
-body.magnified {
-  zoom: 1.5;
-}
-
-body.magnified .accessibility-panel,
-body.magnified .tts-controls {
-  zoom: 1;
-}
-
-/* Keyboard Navigation Focus */
-body.keyboard-navigation a:focus,
-body.keyboard-navigation button:focus,
-body.keyboard-navigation input:focus,
-body.keyboard-navigation select:focus {
-  outline: 3px solid #2196F3;
-  outline-offset: 2px;
+/* Exclude certain elements from color blind filter */
+.protanopia .visibility-btn,
+.deuteranopia .visibility-btn,
+.tritanopia .visibility-btn,
+.protanopia .accessibility-panel,
+.deuteranopia .accessibility-panel,
+.tritanopia .accessibility-panel,
+.protanopia .tts-controls,
+.deuteranopia .tts-controls,
+.tritanopia .tts-controls,
+.protanopia .backtotop,
+.deuteranopia .backtotop,
+.tritanopia .backtotop {
+  filter: none !important;
 }
 
 /* Language Styles */
 body.indonesian .english-text {
-  display: none;
+  display: none !important;
 }
 
 body.english .indonesian-text {
-  display: none;
+  display: none !important;
+}
+
+body.indonesian .indonesian-text {
+  display: block !important;
+}
+
+body.english .english-text {
+  display: block !important;
 }
 
 /* =============================================== */
@@ -1134,7 +1552,7 @@ body.english .indonesian-text {
     height: 250px;
   }
   
-  .footer-content {
+  .footer-main {
     flex-direction: column;
     text-align: center;
   }
@@ -1189,5 +1607,104 @@ body.english .indonesian-text {
     border-radius: 20px;
     position: relative;
     align-items: center;
+  }
+  
+  /* Responsive untuk accessibility grid */
+  .accessibility-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .reset-card {
+    grid-column: span 1;
+  }
+  
+  .accessibility-card {
+    min-height: 90px;
+    padding: 15px 12px;
+  }
+  
+  .card-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .card-title {
+    font-size: 12px;
+  }
+  
+  .card-value {
+    font-size: 11px;
+  }
+  
+  .shortcut-key {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+  
+  .panel-header h3 {
+    font-size: 14px;
+  }
+  
+  .shortcut-hint {
+    font-size: 10px;
+  }
+  
+  .shortcut-help {
+    font-size: 11px;
+    padding: 12px;
+  }
+  
+  /* Responsive untuk font sizes */
+  body.font-small #finalText {
+    font-size: 28px;
+  }
+  
+  body.font-normal #finalText {
+    font-size: 32px;
+  }
+  
+  body.font-large #finalText {
+    font-size: 36px;
+  }
+  
+  body.font-larger #finalText {
+    font-size: 40px;
+  }
+  
+  body.font-largest #finalText {
+    font-size: 44px;
+  }
+  
+  body.font-small .card-text h3 {
+    font-size: 24px;
+  }
+  
+  body.font-normal .card-text h3 {
+    font-size: 28px;
+  }
+  
+  body.font-large .card-text h3 {
+    font-size: 32px;
+  }
+  
+  body.font-larger .card-text h3 {
+    font-size: 36px;
+  }
+  
+  body.font-largest .card-text h3 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-row {
+    gap: 6px;
+  }
+
+  .filter-btn {
+    font-size: 10px;
+    padding: 2px 6px;
+    width: 65px;
   }
 }
