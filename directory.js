@@ -46,6 +46,112 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ================================
+// EXPANDABLE DIRECTORY ITEMS (REVISED)
+// ================================
+let currentlyExpandedItem = null;
+
+function initializeDirectoryItems() {
+  const items = document.querySelectorAll('.directory-list .item');
+  
+  items.forEach(item => {
+    const itemMain = item.querySelector('.item-main');
+    const viewDetailsBtn = item.querySelector('.view-details-btn');
+    const dataHref = itemMain.getAttribute('data-href');
+    
+    // Handle click on item main
+    itemMain.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      // Collapse item yang sedang expanded sebelumnya
+      if (currentlyExpandedItem && currentlyExpandedItem !== item) {
+        currentlyExpandedItem.classList.remove('expanded');
+      }
+      
+      // Toggle item saat ini
+      const wasExpanded = item.classList.contains('expanded');
+      item.classList.toggle('expanded');
+      
+      // Update currently expanded item
+      if (item.classList.contains('expanded')) {
+        currentlyExpandedItem = item;
+        
+        // Scroll item ke view jika diperlukan (hanya saat membuka)
+        if (!wasExpanded) {
+          const rect = item.getBoundingClientRect();
+          if (rect.top < 100 || rect.bottom > window.innerHeight - 100) {
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      } else {
+        currentlyExpandedItem = null;
+      }
+    });
+    
+    // Handle click on view details button
+    if (viewDetailsBtn) {
+      viewDetailsBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        window.location.href = dataHref;
+      });
+    }
+    
+    // Close expanded item when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!item.contains(e.target) && item.classList.contains('expanded')) {
+        item.classList.remove('expanded');
+        currentlyExpandedItem = null;
+      }
+    });
+  });
+}
+
+// ================================
+// FILTER FUNCTIONALITY
+// ================================
+function initializeFilterButtons() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.directory-list .item');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      const filterValue = this.getAttribute('data-filter');
+      
+      // Filter items
+      items.forEach(item => {
+        if (filterValue === 'All') {
+          item.style.display = 'block';
+        } else {
+          const itemType = item.getAttribute('data-type');
+          if (itemType === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+            
+            // Juga collapse item jika sedang expanded
+            if (item.classList.contains('expanded')) {
+              item.classList.remove('expanded');
+              currentlyExpandedItem = null;
+            }
+          }
+        }
+      });
+      
+      // Reset currently expanded item saat filter berubah
+      if (currentlyExpandedItem && currentlyExpandedItem.style.display === 'none') {
+        currentlyExpandedItem.classList.remove('expanded');
+        currentlyExpandedItem = null;
+      }
+    });
+  });
+}
+
+// ================================
 // ACCESSIBILITY PANEL BEHAVIOR
 // ================================
 const visibilityBtn = document.getElementById("visibilityBtn");
@@ -206,6 +312,13 @@ resetSettings.addEventListener("click", () => {
   colorBlindSelect.value = "none";
   ttsToggle.checked = false;
   ttsControls.classList.remove("show");
+  
+  // Juga collapse semua item yang expanded
+  document.querySelectorAll('.item.expanded').forEach(item => {
+    item.classList.remove('expanded');
+  });
+  currentlyExpandedItem = null;
+  
   alert("All accessibility settings have been reset.");
 });
 
@@ -217,20 +330,86 @@ document.querySelector('.logo').addEventListener('click', function() {
 });
 
 // ================================
-// FILTER FUNCTIONALITY
+// KEYBOARD NAVIGATION SUPPORT
 // ================================
-document.querySelectorAll('.filters button').forEach(button => {
-  button.addEventListener('click', function() {
-    // Remove active class from all buttons
-    document.querySelectorAll('.filters button').forEach(btn => {
-      btn.classList.remove('active');
-    });
+function initializeKeyboardNavigation() {
+  document.addEventListener('keydown', function(e) {
+    // ESC key closes expanded item
+    if (e.key === 'Escape' && currentlyExpandedItem) {
+      currentlyExpandedItem.classList.remove('expanded');
+      currentlyExpandedItem = null;
+    }
     
-    // Add active class to clicked button
-    this.classList.add('active');
+    // Arrow keys navigation between items
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      const items = Array.from(document.querySelectorAll('.directory-list .item:not([style*="display: none"])'));
+      const currentIndex = items.indexOf(currentlyExpandedItem);
+      
+      if (e.key === 'ArrowDown' && currentIndex < items.length - 1) {
+        e.preventDefault();
+        const nextItem = items[currentIndex + 1];
+        if (currentlyExpandedItem) currentlyExpandedItem.classList.remove('expanded');
+        nextItem.classList.add('expanded');
+        currentlyExpandedItem = nextItem;
+        nextItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      
+      if (e.key === 'ArrowUp' && currentIndex > 0) {
+        e.preventDefault();
+        const prevItem = items[currentIndex - 1];
+        if (currentlyExpandedItem) currentlyExpandedItem.classList.remove('expanded');
+        prevItem.classList.add('expanded');
+        currentlyExpandedItem = prevItem;
+        prevItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  });
+}
+
+// ================================
+// TOUCH DEVICE SUPPORT
+// ================================
+function initializeTouchSupport() {
+  let touchStartY = 0;
+  let touchEndY = 0;
+  
+  document.addEventListener('touchstart', function(e) {
+    touchStartY = e.changedTouches[0].screenY;
+  }, false);
+  
+  document.addEventListener('touchend', function(e) {
+    touchEndY = e.changedTouches[0].screenY;
     
-    // Filter functionality would go here
-    // For now, we'll just log the filter type
-    console.log('Filter clicked:', this.textContent);
+    // Swipe down to close expanded item
+    if (currentlyExpandedItem && touchEndY - touchStartY > 50) {
+      currentlyExpandedItem.classList.remove('expanded');
+      currentlyExpandedItem = null;
+    }
+  }, false);
+}
+
+// ================================
+// INITIALIZE ALL FUNCTIONALITY
+// ================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize directory items
+  initializeDirectoryItems();
+  
+  // Initialize filter buttons
+  initializeFilterButtons();
+  
+  // Initialize keyboard navigation
+  initializeKeyboardNavigation();
+  
+  // Initialize touch support for mobile devices
+  initializeTouchSupport();
+  
+  // Set filter "All" as active by default
+  document.querySelector('.filter-btn[data-filter="All"]').classList.add('active');
+  
+  // Add animation delay to items for staggered effect
+  const items = document.querySelectorAll('.directory-list .item');
+  items.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.05}s`;
   });
 });
